@@ -1,3 +1,5 @@
+import Solution.TwoSum;
+
 public class Main {
     public static void main(String[] args) {
         TwoSum ts = new TwoSum();
