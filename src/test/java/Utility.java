@@ -3,8 +3,7 @@ import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 
 public class Utility {
+    public static String PATH = "src/test/java/";
 
-    public static void main(String[] args) throws Exception{
-        org.openjdk.jmh.Main.main(args);
-    }
+
 }
