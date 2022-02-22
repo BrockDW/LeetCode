@@ -1,12 +1,24 @@
 package AddTwoNumbers;
 
 import Solution.AddTwoNumbers;
+import TwoSum.TwoSumTest;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @State(Scope.Thread)
@@ -16,7 +28,7 @@ public class AddTwoNumbersTest {
 
     ArrayList<AddTwoNumbers.ListNode> result;
 
-    public void initializeData(){
+    public void initializeData() {
         inputNumberOne = new ArrayList<>();
         inputNumberTwo = new ArrayList<>();
         result = new ArrayList<>();
@@ -36,9 +48,9 @@ public class AddTwoNumbersTest {
                 }
 
                 int lineCounterModulo = lineCounter % 3;
-                if(lineCounterModulo == 0) {
+                if (lineCounterModulo == 0) {
                     inputNumberOne.add(resultListNode.next);
-                }else if (lineCounterModulo == 1){
+                } else if (lineCounterModulo == 1) {
                     inputNumberTwo.add(resultListNode.next);
                 } else {
                     result.add(resultListNode.next);
@@ -52,8 +64,52 @@ public class AddTwoNumbersTest {
         }
     }
 
-    public static void main(String[] args) {
-        AddTwoNumbersTest atnt = new AddTwoNumbersTest();
-        atnt.initializeData();
+    @Test
+    public void addTwoNumberTest() {
+        initializeData();
+        AddTwoNumbers atn = new AddTwoNumbers();
+        for (int i = 0; i < result.size(); i++) {
+            AddTwoNumbers.ListNode actual = atn.addTwoNumbers(inputNumberOne.get(i), inputNumberTwo.get(i));
+            assertEquals(result.get(i), actual);
+        }
+    }
+
+    @Setup
+    public void prepare() {
+        initializeData();
+    }
+
+    @Benchmark
+    public void addTwoNumbersBenchmark(){
+        AddTwoNumbers atn = new AddTwoNumbers();
+        for (int i = 0; i < result.size(); i++) {
+            AddTwoNumbers.ListNode actual = atn.addTwoNumbers(inputNumberOne.get(i), inputNumberTwo.get(i));
+        }
+    }
+
+    @Benchmark
+    public void addTwoNumbersKaustavBenchmark(){
+        AddTwoNumbers atn = new AddTwoNumbers();
+        for (int i = 0; i < result.size(); i++) {
+            AddTwoNumbers.ListNode actual = atn.addTwoNumbersKaustavGurey(inputNumberOne.get(i), inputNumberTwo.get(i));
+        }
+    }
+
+    @Benchmark
+    public void addTwoNumbersAnirudhBenchmark(){
+        AddTwoNumbers atn = new AddTwoNumbers();
+        for (int i = 0; i < result.size(); i++) {
+            AddTwoNumbers.ListNode actual = atn.addTwoNumbersAnirudh(inputNumberOne.get(i), inputNumberTwo.get(i));
+        }
+    }
+
+
+
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder()
+                .include(AddTwoNumbersTest.class.getSimpleName())
+                .forks(1)
+                .build();
+        new Runner(opt).run();
     }
 }

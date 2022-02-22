@@ -23,8 +23,17 @@ public class AddTwoNumbers {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (!(o instanceof ListNode)) return false;
+
             ListNode listNode = (ListNode) o;
-            return val == listNode.val && next.equals(listNode.next);
+            if (val == listNode.val){
+                if (listNode.next == null && next == null){
+                    return true;
+                } else {
+                    return next.equals(listNode.next);
+                }
+            } else {
+                return false;
+            }
         }
 
         @Override
@@ -37,8 +46,19 @@ public class AddTwoNumbers {
         ListNode result = new ListNode();
         ListNode start = result;
         boolean incrementHa = false;
-        while (l1 != null && l2 != null){
-            int newVal = l1.val + l2.val;
+        while (l1 != null || l2 != null){
+            int newVal = 0;
+            if (l1 == null){
+                newVal = l2.val;
+                l2 = l2.next;
+            } else if (l2 == null){
+                newVal = l1.val;
+                l1 = l1.next;
+            } else {
+                newVal = l1.val + l2.val;
+                l1 = l1.next;
+                l2 = l2.next;
+            }
             if (incrementHa){
                 newVal++;
                 incrementHa = false;
@@ -50,36 +70,116 @@ public class AddTwoNumbers {
             ListNode next = new ListNode(newVal);
             start.next = next;
             start = next;
-            l1 = l1.next;
-            l2 = l2.next;
-        }
 
-        if (l1!=null){
-            if (incrementHa){
-                start.val++;
-                incrementHa = false;
-            }
         }
-
         if (incrementHa){
             start.next = new ListNode(1);
         }
         return result.next;
+    }
 
+    //https://leetcode.com/problems/add-two-numbers/discuss/1789385/Simple-Java-Solution
+    public ListNode addTwoNumbersKaustavGurey(ListNode l1, ListNode l2) {
+        int sum = 0;
+        ListNode newHead = new ListNode(0);
+        ListNode ans = newHead;
+        ListNode temp1 = l1;
+        ListNode temp2 = l2;
+        while(temp1!=null || temp2!=null) {
+            if(temp1!=null && temp2!=null) {
+                sum += (temp1.val+temp2.val);
+                newHead.next = new ListNode(sum%10);
+                sum/=10;
+                newHead = newHead.next;
+                temp1 = temp1.next;
+                temp2 = temp2.next;
+            }
+            else if(temp1!=null) {
+                sum += temp1.val;
+                newHead.next = new ListNode(sum%10);
+                sum /= 10;
+                newHead = newHead.next;
+                temp1 = temp1.next;
+            }
+            else if(temp2!=null) {
+                sum += temp2.val;
+                newHead.next = new ListNode(sum%10);
+                sum /= 10;
+                newHead = newHead.next;
+                temp2 = temp2.next;
+            }
+        }
+        while(sum!=0) {
+            newHead.next = new ListNode(sum%10);
+            sum /= 10;
+        }
+        return ans.next;
+    }
+
+    // https://redquark.org/leetcode/0002-add-two-numbers/
+    public ListNode addTwoNumbersAnirudh(ListNode l1, ListNode l2) {
+        // Head of the new linked list - this is the head of the resultant list
+        ListNode head = null;
+        // Reference of head which is null at this point
+        ListNode temp = null;
+        // Carry
+        int carry = 0;
+        // Loop for the two lists
+        while (l1 != null || l2 != null) {
+            // At the start of each iteration, we should add carry from the last iteration
+            int sum = carry;
+            // Since the lengths of the lists may be unequal, we are checking if the
+            // current node is null for one of the lists
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            // At this point, we will add the total sum % 10 to the new node
+            // in the resultant list
+            ListNode node = new ListNode(sum % 10);
+            // Carry to be added in the next iteration
+            carry = sum / 10;
+            // If this is the first node or head
+            if (temp == null) {
+                temp = head = node;
+            }
+            // For any other node
+            else {
+                temp.next = node;
+                temp = temp.next;
+            }
+        }
+        // After the last iteration, we will check if there is carry left
+        // If it's left then we will create a new node and add it
+        if (carry > 0) {
+            temp.next = new ListNode(carry);
+        }
+        return head;
     }
 
     public static void main(String[] args) {
         AddTwoNumbers atn = new AddTwoNumbers();
-        ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3, null)));
-        ListNode l2 = new ListNode(5, new ListNode(6, null));
-        ListNode result = new ListNode(7, new ListNode(0, new ListNode(8, null)));
+        ListNode l1Two = new ListNode(
+                9,
+                new ListNode(
+                        9,
+                        new ListNode(
+                                9,
+                                new ListNode(
+                                        9,
+                                        new ListNode(
+                                                9,
+                                                new ListNode(
+                                                        9,
+                                                        new ListNode(9, null)))))));
 
-        System.out.println(atn.addTwoNumbers(l1, l2));
+        ListNode l2Two = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, null))));
+        ListNode resultTwo = new ListNode();
 
-//        ListNode l1Two = new ListNode(2, new ListNode(4, new ListNode(3, null)));
-//        ListNode l2Two = new ListNode(5, new ListNode(6, new ListNode(4, null)));
-//        ListNode resultTwo = new ListNode(7, new ListNode(0, new ListNode(8, null)));
-//
-//        System.out.println(atn.addTwoNumbers(l1, l2));
+        System.out.println(atn.addTwoNumbers(l1Two, l2Two));
     }
 }
