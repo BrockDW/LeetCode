@@ -1,4 +1,0 @@
-JMH S 17 TwoSum.TwoSumTest S 49 TwoSum.jmh_generated.TwoSumTest_twoSumOne_jmhTest S 9 twoSumOne S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
-JMH S 17 TwoSum.TwoSumTest S 49 TwoSum.jmh_generated.TwoSumTest_twoSumTwo_jmhTest S 9 twoSumTwo S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
-JMH S 25 testingPackage.JMHTesting S 57 testingPackage.jmh_generated.JMHTesting_twoSumOne_jmhTest S 9 twoSumOne S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
-JMH S 25 testingPackage.JMHTesting S 57 testingPackage.jmh_generated.JMHTesting_twoSumTwo_jmhTest S 9 twoSumTwo S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
