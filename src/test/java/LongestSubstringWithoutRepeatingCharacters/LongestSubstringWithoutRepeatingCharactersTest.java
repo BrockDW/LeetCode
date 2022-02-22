@@ -1,19 +1,32 @@
 package LongestSubstringWithoutRepeatingCharacters;
 
-import Solution.AddTwoNumbers;
+import Solution.LongestSubstringWithoutRepeatingCharacters;
+import TwoSum.TwoSumTest;
+import org.junit.Test;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.junit.Assert.assertEquals;
+
+@State(Scope.Thread)
 public class LongestSubstringWithoutRepeatingCharactersTest {
     ArrayList<String> inputString;
-    ArrayList<Integer> output;
+    ArrayList<Integer> result;
 
     public void initializeData() {
         inputString = new ArrayList<>();
-        output = new ArrayList<>();
+        result = new ArrayList<>();
         try {
             int lineCounter = 0;
             File myObj = new File("src/test/java/LongestSubstringWithoutRepeatingCharacters/longestSubstringWithoutRepeatingCharactersTest.txt");
@@ -24,7 +37,7 @@ public class LongestSubstringWithoutRepeatingCharactersTest {
                 if (lineCounterModulo == 0) {
                     inputString.add(data);
                 } else {
-                    output.add(Integer.parseInt(data));
+                    result.add(Integer.parseInt(data));
                 }
                 lineCounter++;
             }
@@ -35,8 +48,43 @@ public class LongestSubstringWithoutRepeatingCharactersTest {
         }
     }
 
-    public static void main(String[] args) {
-        LongestSubstringWithoutRepeatingCharactersTest test = new LongestSubstringWithoutRepeatingCharactersTest();
-        test.initializeData();
+    @Setup
+    public void prepare() {
+        initializeData();
+    }
+
+    @Test
+    public void test(){
+        initializeData();
+        LongestSubstringWithoutRepeatingCharacters lswrc = new LongestSubstringWithoutRepeatingCharacters();
+        for (int i = 0; i < result.size(); i++) {
+            Integer actual = lswrc.lengthOfLongestSubstringLoop(inputString.get(i));
+            assertEquals(result.get(i), actual);
+        }
+    }
+
+    @Benchmark
+    public void longestSubstringSingleLoop(){
+        LongestSubstringWithoutRepeatingCharacters lswrc = new LongestSubstringWithoutRepeatingCharacters();
+        for (int i = 0; i < result.size(); i++) {
+            Integer actual = lswrc.lengthOfLongestSubstringLoop(inputString.get(i));
+        }
+    }
+
+    @Benchmark
+    public void longestSubstringTripleLoop(){
+        LongestSubstringWithoutRepeatingCharacters lswrc = new LongestSubstringWithoutRepeatingCharacters();
+        for (int i = 0; i < result.size(); i++) {
+            Integer actual = lswrc.lengthOfLongestSubstringTripleLoop(inputString.get(i));
+        }
+
+    }
+
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder()
+                .include(LongestSubstringWithoutRepeatingCharactersTest.class.getSimpleName())
+                .forks(1)
+                .build();
+        new Runner(opt).run();
     }
 }
