@@ -50,10 +50,6 @@ public class AddTwoNumbersTest {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
-        System.out.println(inputNumberOne);
-        System.out.println(inputNumberTwo);
-        System.out.println(result);
     }
 
     public static void main(String[] args) {
