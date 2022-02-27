@@ -53,16 +53,36 @@ public class MedianTwoSortedArrayTest {
 
     @Test
     public void specialCaseTest(){
-        int[] inputOne = {1,2,3,4};
-        int[] inputTwo = {1};
-        assertEquals(2, mtsa.findMedianSortedArrays(inputOne, inputTwo), 0.01);
+        int[] inputOne = {0,1,3,3,5,6,6,7};
+        int[] inputTwo = {4};
+        assertEquals(4, mtsa.findMedianSortedArrays(inputOne, inputTwo), 0.01);
+
+        int[] inputOne1 = {1,3,3,5,6,6,7};
+        int[] inputTwo1 = {4};
+        assertEquals(4.5, mtsa.findMedianSortedArrays(inputOne1, inputTwo1), 0.01);
+
+        int[] inputOne2 = {1,2,2,3,6,6,7};
+        int[] inputTwo2 = {5};
+        assertEquals(4, mtsa.findMedianSortedArrays(inputOne2, inputTwo2), 0.01);
+
+        int[] inputOne3 = {1,3,3,5,6,6,7};
+        int[] inputTwo3 = {8};
+        assertEquals(5.5, mtsa.findMedianSortedArrays(inputOne3, inputTwo3), 0.01);
+
+        int[] inputOne4 = {1,3,3,5,6,6,7};
+        int[] inputTwo4 = {8};
+        assertEquals(5.5, mtsa.findMedianSortedArrays(inputOne3, inputTwo3), 0.01);
+
+        int[] inputOne5 = {1,3,3,5,6,6,7};
+        int[] inputTwo5 = {8};
+        assertEquals(5.5, mtsa.findMedianSortedArrays(inputOne3, inputTwo3), 0.01);
     }
 
     @Test
     public void specialCaseTestTwo(){
         int[] inputOne = {1,2};
-        int[] inputTwo = {1};
-        assertEquals(1, mtsa.findMedianSortedArrays(inputOne, inputTwo), 0.01);
+        int[] inputTwo = {3};
+        assertEquals(2, mtsa.findMedianSortedArrays(inputOne, inputTwo), 0.01);
     }
 
     @Test
