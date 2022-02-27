@@ -3,7 +3,6 @@ package Solution;
 public class MedianTwoSortedArray {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int[] smallerArray;
-//        int[] largerArray;
         if (nums1.length > nums2.length){
             smallerArray = nums2;
             nums2 = nums1;
@@ -40,10 +39,22 @@ public class MedianTwoSortedArray {
 
         if (oneNumEnd - oneNumStart <= 2){
             if (twoNumEnd - twoNumStart <= 2){
-                return medianSelector(nums1[oneNumStart], nums2[twoNumStart], isEven);
-            } else if (twoNumEnd - twoNumStart == 2){
-                return findMedianBetweenThree(nums1[oneNumStart], nums2[twoNumStart], nums2[twoNumEnd - 1]);
+                int[] firstArray = new int[oneNumEnd - oneNumStart];
+                int[] secondArray = new int[twoNumEnd - twoNumStart];
+                int count = 0;
+                for (int i = oneNumStart; i < oneNumEnd; i++){
+                    firstArray[count] = nums1[i];
+                    count++;
+                }
+                count = 0;
+                for (int i = twoNumStart; i < twoNumEnd; i++){
+                    secondArray[count] = nums2[i];
+                    count++;
+                }
+
+                return findMedianSortedArraysON(firstArray, secondArray);
             } else {
+                System.out.println(nums1[oneNumStart] + ":" + nums2[twoNumMedian] + ":" + nums2[twoNumMedian + 1]);
                 if (nums2[twoNumMedian] <= nums1[oneNumStart]){
                     if (isEven){
                         if (nums2[twoNumMedian + 1] <= nums1[oneNumStart]){
@@ -56,13 +67,14 @@ public class MedianTwoSortedArray {
                     }
                 } else {
                     if (isEven){
-                        if (nums2[twoNumMedian + 1] <= nums1[oneNumStart]){
-                            return medianSelector(nums2[twoNumMedian], nums2[twoNumMedian + 1], true);
+                        if (nums2[twoNumMedian - 1] >= nums1[oneNumStart]){
+                            return medianSelector(nums2[twoNumMedian], nums2[twoNumMedian - 1], true);
                         } else {
                             return medianSelector(nums2[twoNumMedian], nums1[oneNumStart], true);
                         }
                     } else {
-                        return Math.min(nums2[twoNumMedian + 1], nums1[oneNumStart]);
+//                        System.out.println(nums2[twoNumMedian - 1], nums1[oneNumStart]);
+                        return Math.max(nums2[twoNumMedian], nums1[oneNumStart]);
                     }
                 }
             }

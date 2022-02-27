@@ -53,8 +53,8 @@ public class MedianTwoSortedArrayTest {
 
     @Test
     public void specialCaseTest(){
-        int[] inputOne = {1,2,3};
-        int[] inputTwo = {1,2};
+        int[] inputOne = {1,2,3,4};
+        int[] inputTwo = {1};
         assertEquals(2, mtsa.findMedianSortedArrays(inputOne, inputTwo), 0.01);
     }
 
