@@ -85,6 +85,7 @@ public class MedianTwoSortedArray {
 
             }
         }
+        return 0;
     }
 
     private double findMedianBetweenThree(int first, int second, int third){
