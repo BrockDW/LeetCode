@@ -1,3 +1,5 @@
+package Utility;
+
 import Solution.AddTwoNumbers;
 
 import javax.swing.text.StyledEditorKit;
@@ -8,20 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-abstract class JHMTemplate {
-    private List<List<Object>> dataList;
+public abstract class JHMTemplate {
 
-    private String questionName;
-
-//    private int inputIndexEnd;
-//    private int outputIndexEnd;
-    private Map<Integer, Boolean> indexAndType;
-
-    public JHMTemplate(List<List<Object>> dataList, String questionName, Map<Integer, Boolean> indexAndType) {
-        this.dataList = dataList;
-        this.questionName = questionName;
-        this.indexAndType = indexAndType;
-    }
+    public List<List<Object>> dataList;
+    public String questionName;
+    public Map<Integer, Boolean> indexAndType;
 
     public void initializeData() {
         dataList = new ArrayList<>();
@@ -29,7 +22,6 @@ abstract class JHMTemplate {
             int lineCounter = 0;
             File myObj = new File("src/test/java/AddTwoNumbers/"+questionName+"Test.txt");
             Scanner myReader = new Scanner(myObj);
-//            ArrayList<Object>
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 int lineCounterModulo = lineCounter % indexAndType.size();
