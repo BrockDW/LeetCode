@@ -1,5 +1,6 @@
 import Solution.AddTwoNumbers;
 
+import javax.swing.text.StyledEditorKit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -8,44 +9,40 @@ import java.util.Map;
 import java.util.Scanner;
 
 abstract class JHMTemplate {
-    private List<List<Object>> inputList;
-    private List<List<Object>> outputList;
+    private List<List<Object>> dataList;
 
     private String questionName;
 
 //    private int inputIndexEnd;
 //    private int outputIndexEnd;
-    private Map<Integer, String> indexAndType;
+    private Map<Integer, Boolean> indexAndType;
 
+    public JHMTemplate(List<List<Object>> dataList, String questionName, Map<Integer, Boolean> indexAndType) {
+        this.dataList = dataList;
+        this.questionName = questionName;
+        this.indexAndType = indexAndType;
+    }
 
     public void initializeData() {
-        inputList = new ArrayList<>();
-        outputList = new ArrayList<>();
+        dataList = new ArrayList<>();
         try {
             int lineCounter = 0;
             File myObj = new File("src/test/java/AddTwoNumbers/"+questionName+"Test.txt");
             Scanner myReader = new Scanner(myObj);
+//            ArrayList<Object>
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 int lineCounterModulo = lineCounter % indexAndType.size();
-                String[] splitedInt = data.split(",");
 
-                AddTwoNumbers.ListNode resultListNode = new AddTwoNumbers.ListNode();
-                AddTwoNumbers.ListNode start = resultListNode;
-                for (String s : splitedInt) {
-                    AddTwoNumbers.ListNode next = new AddTwoNumbers.ListNode(Integer.parseInt(s));
-                    start.next = next;
-                    start = next;
+                Object curLineToObj = lineToObject(data, lineCounterModulo);
+
+                try {
+                    dataList.get(lineCounterModulo).add(curLineToObj);
+                } catch (Exception e){
+                    dataList.add(new ArrayList<>());
+                    dataList.get(lineCounterModulo).add(curLineToObj);
                 }
 
-
-                if (lineCounterModulo == 0) {
-                    inputNumberOne.add(resultListNode.next);
-                } else if (lineCounterModulo == 1) {
-                    inputNumberTwo.add(resultListNode.next);
-                } else {
-                    result.add(resultListNode.next);
-                }
                 lineCounter++;
             }
             myReader.close();
@@ -54,5 +51,7 @@ abstract class JHMTemplate {
             e.printStackTrace();
         }
     }
+
+    public abstract Object lineToObject(String line, int lineCountMod);
 
 }
