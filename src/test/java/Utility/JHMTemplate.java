@@ -1,20 +1,16 @@
 package Utility;
 
-import Solution.AddTwoNumbers;
-
-import javax.swing.text.StyledEditorKit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public abstract class JHMTemplate {
 
     public List<List<Object>> dataList;
     public String questionName;
-    public Map<Integer, Boolean> indexAndType;
+    public int iterationSize;
 
     public void initializeData() {
         dataList = new ArrayList<>();
@@ -24,7 +20,7 @@ public abstract class JHMTemplate {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                int lineCounterModulo = lineCounter % indexAndType.size();
+                int lineCounterModulo = lineCounter % iterationSize;
 
                 Object curLineToObj = lineToObject(data, lineCounterModulo);
 
@@ -34,7 +30,6 @@ public abstract class JHMTemplate {
                     dataList.add(new ArrayList<>());
                     dataList.get(lineCounterModulo).add(curLineToObj);
                 }
-
                 lineCounter++;
             }
             myReader.close();

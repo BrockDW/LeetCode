@@ -9,7 +9,6 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,10 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class AddTwoNumbersAbstractTest extends JHMTemplate {
     public AddTwoNumbersAbstractTest() {
         this.questionName = "addTwoNumbers";
-        this.indexAndType = new HashMap<>();
-        indexAndType.put(0, true);
-        indexAndType.put(1, true);
-        indexAndType.put(2, false);
+        this.iterationSize = 3;
     }
 
     @Override
@@ -64,12 +60,6 @@ public class AddTwoNumbersAbstractTest extends JHMTemplate {
             AddTwoNumbers.ListNode actual = atn.addTwoNumbers((AddTwoNumbers.ListNode) inputNumberOne.get(i), (AddTwoNumbers.ListNode) inputNumberTwo.get(i));
             assertEquals(result.get(i), actual);
         }
-//        initializeData();
-//        AddTwoNumbers atn = new AddTwoNumbers();
-//        for (int i = 0; i < result.size(); i++) {
-//            AddTwoNumbers.ListNode actual = atn.addTwoNumbers(inputNumberOne.get(i), inputNumberTwo.get(i));
-//            assertEquals(result.get(i), actual);
-//        }
     }
 
     public static void main(String[] args) {
@@ -78,6 +68,5 @@ public class AddTwoNumbersAbstractTest extends JHMTemplate {
         for(List<Object> l: a.dataList){
             System.out.println(l);
         }
-//        System.out.println(a.dataList.size());
     }
 }
