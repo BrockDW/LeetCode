@@ -1,4 +1,4 @@
-package Solution;
+package Solution.easy;
 
 import org.openjdk.jmh.annotations.Benchmark;
 

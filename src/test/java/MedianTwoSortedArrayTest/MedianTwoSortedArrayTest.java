@@ -1,6 +1,6 @@
 package MedianTwoSortedArrayTest;
 
-import Solution.MedianTwoSortedArray;
+import Solution.hard.MedianTwoSortedArray;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

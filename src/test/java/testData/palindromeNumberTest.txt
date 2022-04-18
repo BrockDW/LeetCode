@@ -1,0 +1,12 @@
+121
+true
+-121
+false
+10
+false
+121121121
+true
+121121121
+true
+3434343
+true

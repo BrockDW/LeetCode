@@ -16,7 +16,7 @@ public abstract class JHMTemplate {
         dataList = new ArrayList<>();
         try {
             int lineCounter = 0;
-            File myObj = new File("src/test/java/"+questionName+"/"+questionName+"Test.txt");
+            File myObj = new File("src/test/java/testData/"+questionName+"Test.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();

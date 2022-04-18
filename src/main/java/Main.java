@@ -1,5 +1,4 @@
-import Solution.TwoSum;
-import org.openjdk.jmh.annotations.Benchmark;
+import Solution.easy.TwoSum;
 
 public class Main {
 //    @Benchmark

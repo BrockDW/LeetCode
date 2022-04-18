@@ -1,6 +1,6 @@
 package AddTwoNumbers;
 
-import Solution.AddTwoNumbers;
+import Solution.medium.AddTwoNumbers;
 import Utility.JHMTemplate;
 import org.junit.Test;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -8,7 +8,6 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;

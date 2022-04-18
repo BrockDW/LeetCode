@@ -1,5 +1,5 @@
 package TwoSum;
-import Solution.TwoSum;
+import Solution.easy.TwoSum;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

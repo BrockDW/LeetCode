@@ -1,4 +1,4 @@
-package Solution;
+package Solution.medium;
 
 import java.util.HashSet;
 import java.util.Set;

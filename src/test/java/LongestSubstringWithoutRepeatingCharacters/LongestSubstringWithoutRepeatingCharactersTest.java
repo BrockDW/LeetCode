@@ -1,7 +1,6 @@
 package LongestSubstringWithoutRepeatingCharacters;
 
-import Solution.LongestSubstringWithoutRepeatingCharacters;
-import TwoSum.TwoSumTest;
+import Solution.medium.LongestSubstringWithoutRepeatingCharacters;
 import org.junit.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;

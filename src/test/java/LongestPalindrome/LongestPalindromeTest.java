@@ -1,7 +1,6 @@
 package LongestPalindrome;
 
-import Solution.AddTwoNumbers;
-import Solution.LongestPalindromicSubstring;
+import Solution.medium.LongestPalindromicSubstring;
 import Utility.JHMTemplate;
 import org.junit.Test;
 

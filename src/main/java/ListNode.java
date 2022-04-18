@@ -1,4 +1,4 @@
-import Solution.AddTwoNumbers;
+import Solution.medium.AddTwoNumbers;
 
 import java.util.Objects;
 

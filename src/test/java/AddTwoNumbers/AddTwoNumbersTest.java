@@ -1,7 +1,6 @@
 package AddTwoNumbers;
 
-import Solution.AddTwoNumbers;
-import TwoSum.TwoSumTest;
+import Solution.medium.AddTwoNumbers;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -18,7 +17,6 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 @State(Scope.Thread)

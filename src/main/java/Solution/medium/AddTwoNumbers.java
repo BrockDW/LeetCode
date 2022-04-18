@@ -1,6 +1,5 @@
-package Solution;
+package Solution.medium;
 
-import java.util.List;
 import java.util.Objects;
 
 public class AddTwoNumbers {
